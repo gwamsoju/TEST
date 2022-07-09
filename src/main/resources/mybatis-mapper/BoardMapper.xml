@@ -11,4 +11,7 @@
         order by
             idx asc
     </select>
+    <insert id="insertBoard" parameterType="com.example.test.VO.Board">
+
+    </insert>
 </mapper>
