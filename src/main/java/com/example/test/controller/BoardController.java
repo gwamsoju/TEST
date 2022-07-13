@@ -23,7 +23,7 @@ public class BoardController {
         List<Board> lists = boardService.getList(pageUtil);
         int totalBoard = boardService.getTotalBoard();
         model.addAttribute("lists",lists);
-            model.addAttribute("pageMaker", new PageDTO(totalBoard,pageUtil));
+        model.addAttribute("pageMaker", new PageDTO(totalBoard,pageUtil));
         return "board";
     }
     @GetMapping("/write")
@@ -38,9 +38,11 @@ public class BoardController {
     }
 
     @GetMapping("/lists/{idx}")
-    public String listByNumber(Model model, Board board1){
+    public String listByNumber(Model model, Board board1,PageUtil pageUtil){
         Board board = boardService.listByNumber(board1);
         model.addAttribute("board",board);
+        model.addAttribute("pageNum",pageUtil.getPageNum());
+        model.addAttribute("amount",pageUtil.getAmount());
         return "boardDetail";
     }
 }

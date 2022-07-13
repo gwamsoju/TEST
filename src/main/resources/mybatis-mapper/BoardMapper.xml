@@ -3,27 +3,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.test.mapper.BoardMapper">
+    <sql id="Criteria">
+        <trim prefix="(" suffix=") AND " prefixOverrides="OR">
+            <foreach item="type" collection="typeArr">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            title like '%'||#{keyword}||'%'
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            context like '%'||#{keyword}||'%'
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            id like '%'||#{keyword}||'%'
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    </sql>
+
     <select id="getList" resultType="com.example.test.VO.Board">
         <![CDATA[
         select
-            idx, title, context, create_at,fileid
+            idx, title, context, create_at,id
         from(
             select
-                rownum rn, idx, title,context,create_at,fileid
+                rownum rn, idx, title,context,create_at,id
             from
                 boards
             where
+        ]]>
+
+        <include refid="Criteria"></include>
+
+        <![CDATA[
                 rownum <= #{pageNum} * #{amount}
             )
         where
             rn > (#{pageNum} - 1) * #{amount}
-                ]]>
+        ]]>
     </select>
     <select id="getTotalBoard" resultType="int">
         select
             count(*)
         from
             boards
+        where
+            idx > 0
     </select>
     <select id="listByNumber" parameterType="com.example.test.VO.Board" resultType="com.example.test.VO.Board">
         select
@@ -36,4 +63,39 @@
     <insert id="insertBoard" parameterType="com.example.test.VO.Board">
 
     </insert>
+
+    <select id="getBetweenDay" resultType="com.example.test.VO.Board">
+    <![CDATA[
+        SELECT
+            TITLE, CONTEXT, CREATE_AT, ID
+        FROM
+            BOARDS
+        WHERE
+            CREATE_AT > '2022-06-01'
+            AND CREATE_AT < '2022-07-01'
+    ]]>
+    </select>
+
+    <select id="SearchWithForeach" parameterType="list" resultType="com.example.test.VO.Board">
+        SELECT title, context, id, create_at FROM boards
+        <where>
+            <if test="list != null">
+                id IN
+                <foreach collection="list" open="(" close=")" separator="," item="id">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+

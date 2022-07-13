@@ -7,9 +7,10 @@ import java.sql.Date;
 @Data
 public class Board {
 
-    private int idx;
+    private String idx;
     private String title;
     private String context;
     private Date createAt;
     private String id;
+    private String fileId;
 }
