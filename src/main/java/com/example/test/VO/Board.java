@@ -1,10 +1,16 @@
 package com.example.test.VO;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Board {
 
     private String idx;
@@ -13,4 +19,5 @@ public class Board {
     private Date createAt;
     private String id;
     private String fileId;
+
 }

@@ -5,6 +5,7 @@ import com.example.test.VO.Board;
 import com.example.test.VO.PageDTO;
 import com.example.test.util.PageUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,6 @@ public class BoardController {
 
     @PostMapping("/write")
     public String upload(){
-
         return "redirect:/";
     }
 

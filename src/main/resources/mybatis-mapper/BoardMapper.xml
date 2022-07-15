@@ -3,6 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.test.mapper.BoardMapper">
+
     <sql id="Criteria">
         <trim prefix="(" suffix=") AND " prefixOverrides="OR">
             <foreach item="type" collection="typeArr">
@@ -87,6 +88,33 @@
             </if>
         </where>
     </select>
+    <update id="boardUpdate" parameterType="com.example.test.VO.Board">
+        UPDATE BOARDS
+        <set>
+            <trim prefixOverrides=",">
+                <if test="title != null">
+                    title = #{title},
+                </if>
+                <if test="context != null">
+                    context = #{context},
+                </if>
+            </trim>
+        </set>
+        WHERE
+            idx = #{idx}
+    </update>
+    <select id="SearchBoard" parameterType="list" resultType="com.example.test.VO.Board">
+        SELECT id, idx, title, context, create_at FROM BOARDS
+        <where>
+            id
+            <trim prefix="IN">
+                <foreach collection="list" item="id" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </trim>
+        </where>
+    </select>
+
 </mapper>
 
 

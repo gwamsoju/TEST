@@ -15,4 +15,6 @@ public interface BoardMapper {
     public int getTotalBoard();
     public List<Board> getBetweenDay();
     public List<Board> SearchWithForeach(List list);
+    public void boardUpdate(Board board);
+    public List<Board> SearchBoard(List list);
 }

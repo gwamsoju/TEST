@@ -39,4 +39,35 @@ public class BoardTest {
 
         boardMapper.getList(pageUtil).forEach(board -> System.out.println(board));
     }
+    @Test
+    void 게시물_업데이트1_제목만(){
+
+        Board board = Board.builder()
+                .title("안녕하세요")
+                .idx("1")
+                .build();
+
+        boardMapper.boardUpdate(board);
+
+    }
+
+    @Test
+    void 게시물_업데이트2(){
+
+        Board board = Board.builder()
+                .title("최창기입니다.")
+                .context("취뽀했습니다.")
+                .idx("1")
+                .build();
+
+        boardMapper.boardUpdate(board);
+    }
+
+    @Test
+    void 게시물_조회하기(){
+
+        List<String> list = Arrays.asList("wodud","ckdrl");
+
+        boardMapper.SearchBoard(list).forEach(board -> System.out.println(board));
+    }
 }

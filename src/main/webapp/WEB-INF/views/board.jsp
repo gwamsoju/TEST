@@ -76,7 +76,6 @@
             <input type="hidden" name="type" value="<c:out value='${pageMaker.pageUtil.type}'/>"/>
             <input type="hidden" name="keyword"  value="<c:out value='${pageMaker.pageUtil.keyword}'/>"/>
         </form>
-
         <form id="searchForm" action="/" method="get">
             <select name="type">
                 <option value="" <c:out value="${pageMaker.pageUtil.type == null ? 'selected' : ''}"/>></option>
