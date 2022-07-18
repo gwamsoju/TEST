@@ -1,7 +1,9 @@
 package com.example.test;
 
 import com.example.test.VO.Board;
+import com.example.test.VO.Reply;
 import com.example.test.mapper.BoardMapper;
+import com.example.test.mapper.ReplyMapper;
 import com.example.test.util.PageUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class BoardTest {
 
     @Autowired
     private BoardMapper boardMapper;
+    @Autowired
+    private ReplyMapper replyMapper;
 
     @Test
     void 게시물_가져오기(){
@@ -44,7 +48,7 @@ public class BoardTest {
 
         Board board = Board.builder()
                 .title("안녕하세요")
-                .idx("1")
+                .idx(1L)
                 .build();
 
         boardMapper.boardUpdate(board);
@@ -57,7 +61,7 @@ public class BoardTest {
         Board board = Board.builder()
                 .title("최창기입니다.")
                 .context("취뽀했습니다.")
-                .idx("1")
+                .idx(1L)
                 .build();
 
         boardMapper.boardUpdate(board);
@@ -69,5 +73,21 @@ public class BoardTest {
         List<String> list = Arrays.asList("wodud","ckdrl");
 
         boardMapper.SearchBoard(list).forEach(board -> System.out.println(board));
+    }
+
+    @Test
+    void 댓글_개수_추가() {
+        Long idx = 1L;
+
+        boardMapper.updateCnt(idx);
+
+        Reply reply = Reply.builder()
+                .reply("댓글 TEST")
+                .replyer("wodud")
+                .build();
+
+        int update = replyMapper.update(reply);
+
+        System.out.println(update);
     }
 }

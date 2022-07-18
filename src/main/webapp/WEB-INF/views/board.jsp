@@ -4,7 +4,6 @@
 <html lang="ko">
 <head>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>board</title>
     <script type="text/javascript">
@@ -50,7 +49,10 @@
         <c:forEach items="${lists}" var="list">
             <tr>
                 <td>${list.idx}</td>
-                <td><a class="move" href="/lists/${list.idx}">${list.title}</a></td>
+                <td><a class="move" href="/lists/${list.idx}">${list.title}</a>&nbsp&nbsp
+                <c:if test = "${list.replyCnt != 0}">
+                    [${list.replyCnt}]
+                </c:if>
                 <td>${list.id}</td>
                 <td>${list.createAt}</td>
             </tr>

@@ -13,4 +13,6 @@ public interface BoardService {
     public Board listByNumber(Board board);
     public void uploadFile(MultipartFile uploadFile) throws IOException;
     public int getTotalBoard();
+    public int getReplyCnt(Long idx);
+    public void updateCnt(Long idx);
 }

@@ -23,15 +23,15 @@ public class ReplyService {
         return replyMapper.selectReply(reply);
     }
 
-    public int delete(Long bno){
-        return replyMapper.delete(bno);
+    public int delete(Long idx){
+        return replyMapper.delete(idx);
     }
 
     public int update(Reply reply){
         return replyMapper.update(reply);
     }
 
-    public List<Reply> getReplyList(Long bno, PageUtil pageUtil){
-        return replyMapper.getReplyList(pageUtil, bno);
+    public List<Reply> getReplyList(Long idx, PageUtil pageUtil){
+        return replyMapper.getReplyList(pageUtil, idx);
     }
 }

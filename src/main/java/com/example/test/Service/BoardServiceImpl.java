@@ -37,4 +37,14 @@ public class BoardServiceImpl implements BoardService{
     public int getTotalBoard() {
         return boardMapper.getTotalBoard();
     }
+
+    @Override
+    public int getReplyCnt(Long idx) {
+        return boardMapper.getReplyCnt(idx);
+    }
+
+    @Override
+    public void updateCnt(Long idx) {
+        boardMapper.updateCnt(idx);
+    }
 }

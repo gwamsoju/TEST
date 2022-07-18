@@ -19,5 +19,6 @@ public class Board {
     private Date createAt;
     private String id;
     private String fileId;
+    private int replyCnt;
 
 }

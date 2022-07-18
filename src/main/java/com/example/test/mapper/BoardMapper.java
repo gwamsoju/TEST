@@ -17,4 +17,6 @@ public interface BoardMapper {
     public List<Board> SearchWithForeach(List list);
     public void boardUpdate(Board board);
     public List<Board> SearchBoard(List list);
+    public int getReplyCnt(Long idx);
+    public void updateCnt(Long idx);
 }

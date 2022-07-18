@@ -14,5 +14,5 @@ public interface ReplyMapper {
     public Reply selectReply(Reply reply);
     public int delete (Long rno);
     public int update(Reply reply);
-    public List<Reply> getReplyList(@Param("pageUtil") PageUtil pageUtil, @Param("bno") Long bno);
+    public List<Reply> getReplyList(@Param("pageUtil") PageUtil pageUtil, @Param("idx") Long idx);
 }

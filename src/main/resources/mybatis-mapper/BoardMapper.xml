@@ -27,10 +27,10 @@
     <select id="getList" resultType="com.example.test.VO.Board">
         <![CDATA[
         select
-            idx, title, context, create_at,id
+            idx, title, context, create_at,id, replyCnt
         from(
             select
-                rownum rn, idx, title,context,create_at,id
+                rownum rn, idx, title,context,create_at,id, replyCnt
             from
                 boards
             where
@@ -45,6 +45,11 @@
             rn > (#{pageNum} - 1) * #{amount}
         ]]>
     </select>
+
+    <update id="updateCnt">
+        update boards set replycnt = replycnt + 1 where idx = #{idx}
+    </update>
+
     <select id="getTotalBoard" resultType="int">
         select
             count(*)
@@ -114,7 +119,6 @@
             </trim>
         </where>
     </select>
-
 </mapper>
 
 

@@ -20,7 +20,7 @@ public class ReplyTest {
     @Test
     public void 테스트_1(){
         Reply reply = Reply.builder()
-                .bno("1")
+                .idx(1L)
                 .reply("댓글 테스트_3")
                 .replyer("wodud")
                 .build();

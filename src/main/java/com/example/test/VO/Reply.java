@@ -15,7 +15,7 @@ import java.util.Date;
 public class Reply {
 
     private Long rno;
-    private String bno;
+    private Long idx;
 
     private String reply;
     private String replyer;

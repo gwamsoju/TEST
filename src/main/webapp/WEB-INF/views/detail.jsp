@@ -47,6 +47,23 @@
                 }
             })
         });
+
+        function insertReply() {
+
+            $.ajax({
+                type: "post",
+                url: "/reply/new",
+                data: { "idx" : $("#idx").val(), "reply" : $("#reply").val(), "replyer": $("#replyer").val()},
+                dataType: "text",
+                success: function () {
+                    alert("통신 성공");
+                },
+                error:function(request,status,error){
+                    alert("code:" +request.status + "\n"+"message:" +request.responseText + "\n" + "error:" + error);
+                }
+            });
+        }
+
     </script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <meta charset="UTF-8">
@@ -61,6 +78,17 @@
         <tr>작성일</tr><td>${board.createAt}<td>
     </table>
     <a href="/">목록</a>
+    <div>
+        <form action="/reply/${board.idx}" method="post">
+            <label for="replyer">작성자 : </label>
+                <input type="text" id="replyer" name="replyer"/>
+            <br>
+            <input type="text" id="idx" name="idx" value="${board.idx}"/>
+            <label for="reply">내용 : </label>
+                <textarea id="reply" name="reply" cols="50  " rows="2"></textarea>
+            <input type="button" value="댓글" onclick="insertReply()"/>
+        </form>
+    </div>
     <div class="panel-body" >
         <ul class="chat" >
             <c:forEach items="${replies}" var="reply">
