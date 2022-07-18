@@ -1,8 +1,10 @@
 package com.example.test.controller;
 
 import com.example.test.Service.BoardService;
+import com.example.test.Service.ReplyService;
 import com.example.test.VO.Board;
 import com.example.test.VO.PageDTO;
+import com.example.test.VO.Reply;
 import com.example.test.util.PageUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +20,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final ReplyService replyService;
 
     @GetMapping("/")
     public String board(Model model, PageUtil pageUtil){
@@ -40,9 +43,11 @@ public class BoardController {
     @GetMapping("/lists/{idx}")
     public String listByNumber(Model model, Board board1,PageUtil pageUtil){
         Board board = boardService.listByNumber(board1);
+        List<Reply> replyList = replyService.getReplyList(board.getIdx(), pageUtil);
+        model.addAttribute("replies",replyList);
         model.addAttribute("board",board);
         model.addAttribute("pageNum",pageUtil.getPageNum());
         model.addAttribute("amount",pageUtil.getAmount());
-        return "boardDetail";
+        return "detail";
     }
 }

@@ -13,7 +13,7 @@ import java.sql.Date;
 @Builder
 public class Board {
 
-    private String idx;
+    private Long idx;
     private String title;
     private String context;
     private Date createAt;
