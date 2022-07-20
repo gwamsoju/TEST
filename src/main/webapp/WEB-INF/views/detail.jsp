@@ -55,9 +55,6 @@
                 url: "/reply/new",
                 data: { "idx" : $("#idx").val(), "reply" : $("#reply").val(), "replyer": $("#replyer").val()},
                 dataType: "text",
-                success: function () {
-                    alert("통신 성공");
-                },
                 error:function(request,status,error){
                     alert("code:" +request.status + "\n"+"message:" +request.responseText + "\n" + "error:" + error);
                 }
@@ -83,7 +80,7 @@
             <label for="replyer">작성자 : </label>
                 <input type="text" id="replyer" name="replyer"/>
             <br>
-            <input type="text" id="idx" name="idx" value="${board.idx}"/>
+            <input type="hidden" id="idx" name="idx" value="${board.idx}"/>
             <label for="reply">내용 : </label>
                 <textarea id="reply" name="reply" cols="50  " rows="2"></textarea>
             <input type="button" value="댓글" onclick="insertReply()"/>

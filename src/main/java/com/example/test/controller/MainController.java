@@ -28,4 +28,5 @@ public class MainController {
     public void Test2(@RequestBody HashMap<String, Object> map){
         System.out.println(map);
     }
+
 }
