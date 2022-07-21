@@ -57,10 +57,11 @@
                    url : "/uploadAjaxAction",
                    processData: false, // 반드시 false
                    contentType: false, // 반드시 false
-                   data: formData, // formData 자체를 전송
+                   data: formData, // formData 자체를 전송, 전송할 데이터
                    type: "POST",
+                    dataType:"JSON", // 받을 데이터 형태 
                    success: function(result){
-                       alert("Upload");
+                        console.log(result);
                    }
                 });
             });
